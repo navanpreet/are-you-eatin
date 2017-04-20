@@ -1,0 +1,80 @@
+{
+	"/link/get_code": {
+      "get": {
+        "description": "code to be used by patient in the process of verification",
+        "operationId": "generateString",
+        "tags" : ["link", "authenticated", "Patients"],
+        "responses": {
+          "default": {
+            "description": "access token for the user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "schema": {
+                            "$ref": "../config/definitions.json#/definitions/Code"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/doctor/{doctor_id}/link": {
+      "post": {
+        "description": "code to be used by patient in the process of verification",
+        "operationId": "matchString",
+        "tags" : ["link", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "doctor_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+        	{
+        		"name": "q",
+        		"in": "query",
+        		"type": "string",
+        		"required": true
+        	},
+           {
+            "name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pet response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    }
+}

@@ -1,0 +1,30 @@
+{
+	"internal" : {
+		"port" : 3000
+	},
+	"resources" : {
+		"mongodb" : "mongodb://localhost:27017/foodtrack"
+	},
+	"s3_client" :{
+		"key": "AKIAI5TUTVNKOJPBBMYA",
+		"secret": "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",
+		"bucket": "interns-s3"
+	},
+	"salt": {
+		"rounds": 10
+	},
+	"token": {
+		"size": 16
+	},
+	"firebase": {
+		"key": "key=AIzaSyCLtJ9Do9HoBAQlLRpRUVYu0xkBZc_BG9g"
+	},
+	"sendgrid": {
+		"key": "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"
+	},
+	"host": {
+		"Address": "138.68.192.120"
+	}
+}
+
+

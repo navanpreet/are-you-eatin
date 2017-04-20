@@ -1,0 +1,513 @@
+{
+	"definitions": {
+	"Diet": {
+	  "type": "object",
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "patient_id": {
+	      "type": "string"
+	    },
+	    "foods_id": {
+	      "type": "array",
+	      "items": {
+	        "$ref": "#/definitions/Food"
+	      }
+	    }
+	  }
+	},
+	"Doctor": {
+	  "properties": {
+	    "first_name": {
+	      "type": "string"
+	    },
+	    "last_name": {
+	      "type": "string"
+	    },
+	    "date_of_birth": {
+	      "type": "string"
+	    },
+	    "email": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"Food": {
+	  "type": "object",
+	  "required": [ "name" ],
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "name": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"Message": [
+		{
+			"name": "user_id",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "message",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "time_stamp",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "receiver_id",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "device_id",
+			"in": "body",
+			"type": "string"
+		},
+		{
+			"name": "registration_id",
+			"in": "body",
+			"type": "string"
+		}
+	],
+
+	"MessageReply": {
+	  "type": "object",
+	  "properties": {
+	    "user_id": {
+	      "type": "string"
+	    },
+	    "message": {
+	      "type": "string"
+	    },
+	    "time_stamp": {
+	      "type": "string"
+	    },
+	    "receiver_id": {
+	      "type": "string"
+	    },
+	    "read": {
+	      "type": "boolean"
+	    },
+	    "date": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"Code": {
+	    "type": "object",
+	    "properties": {
+		   
+		   "code": {
+		   		"type": "string"
+		   }
+		}   
+	},
+	"Patient": {
+	  "type": "object",
+	  "required": [ "name", "doctor_id", "email" ],
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "doctor": {
+	      "type": "object",
+	      "properties": {
+	      	"_id": {
+	      		"type": "string"
+	      	},
+	      	"first_name": {
+	      		"type": "string"
+	      	},
+	      	"last_name": {
+	      		"type": "string"
+	      	}
+	      }
+	    },
+	    "allergies": {
+	    	"type": "string"
+	    },
+	    "information": {
+	      "type": "object",
+	      "properties": {
+	      	"username": {
+	      		"type": "string"
+	      	},
+	      	"first_name": {
+	      		"type": "string"
+	      	},
+	      	"last_name": {
+	      		"type": "string"
+	      	},
+	      	"email": {
+	      		"type": "string"
+	      	},
+	      	"date_of_birth": {
+	      		"type": "string"
+	      	}
+	      }
+	    },
+	    "current_diet_id": {
+	      "type": "string"
+	    },
+	    "current_prescription_id": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"Pill": {
+	  "type": "object",
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "name": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"PillRecord": {
+	  "type": "object",
+	  "properties": {
+	    "pill_id": {
+	      "type": "object",
+	      "properties": {
+	      	"_id": {
+	      		"type": "string"
+	      	},
+	      	"name": {
+	      		"type": "string"
+	      	}	
+	      }
+	    },
+	    "note": {
+	      "type": "object",
+	      "properties": {
+	      	"_id": {
+	      		"type": "string"
+	      	},
+	      	"note": {
+	      		"type": "string"
+	      	}	
+	      }
+	    }
+	  }
+	},
+	"Prescription": {
+	  "type": "object",
+	  "required": [ "patient_id", "date" ],
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "patient_id": {
+	      "type": "string"
+	    },
+	    "pills_id": {
+	      "type": "array",
+	      "items": {
+	        "$ref": "#/definitions/Pill"
+	      }
+	    },
+	    "date": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"Record": {
+	  "type": "object",
+	  "required": [ "patient_id", "diet_id", "time_stamp", "date" ],
+	  "properties": {
+	    "_id": {
+	      "type": "string"
+	    },
+	    "patient_id": {
+	      "type": "string"
+	    },
+	    "diet_id": {
+	      "type": "string"
+	    },
+	    "time_stamp": {
+	      "type": "string"
+	    },
+	    "date": {
+	      "type": "string"
+	    },
+	    "images": {
+	      "type": "array",
+	      "items": {
+	        "type": "string"
+	      }
+	    },
+	    "prescription_id": {
+	      "type": "string"
+	    },
+	    "current_prescription": {
+	      "type": "array",
+	      "items": {
+	        "$ref": "#/definitions/PillRecord"
+	      }
+	    },
+	    "food_history": {
+	      "type": "array",
+	      "items": {
+	        "$ref": "#/definitions/HistoryItem"
+	      }
+	    }
+	  }
+	},
+	"Note": [
+		{
+			"name": "note",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "patient_id",
+			"in": "body",
+			"type": "string",
+			"required": true	
+		},
+		{
+			"name": "pill_name",
+			"in": "body",
+			"type": "string",
+			"required": true
+		}
+	],
+	"NoteReply": {
+	  "type": "object",
+	  "properties": {
+	    "note": {
+	      "type": "string"
+	    },
+	    "patient_id": {
+	      "type": "string"
+	    },
+	    "pill_id": {
+	      "type": "string"
+	    }
+	  }
+	},
+	"HistoryItem": {
+	  "type": "object",
+	  "properties": {
+	    "food_id": {
+	      "$ref": "#/definitions/Food"
+	    },
+	    "eaten_today": {
+	      "type": "boolean"
+	    }
+	  }
+	},
+	"FoodId":{
+		"type": "object",
+		"properties": {
+			"food_id":{
+				"type": "string"
+			}
+		}
+	},
+	"NameElem": {
+	  "type": "object",
+	  "properties": {
+	    "food_name": {
+	      "type": "string"
+	    }
+	  } 
+	},
+	"NameElemFood": {
+	  "type": "object",
+	  "properties": {
+	    "food_id": {
+	      "type": "string",
+	      "required": true
+	    }
+	  } 
+	},
+	"NameElemPres": {
+	  "type": "object",
+	  "properties": {
+	    "pill_name": {
+	      "type": "string",
+	      "required": true
+	    }
+	  } 
+	},
+	"NameElemPresNote": {
+	  "type": "object",
+	  "properties": {
+	    "pill_name": {
+	      "type": "string",
+	      "required": true
+	    },
+	    "note": {
+	    	"type": "string"
+	    }
+	  } 
+	},
+	"DietDelta": [
+		{
+			"name": "time_stamp",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "food",
+			"in": "body",
+			"type": "array",
+			"items": {
+	        "$ref": "#/definitions/NameElem"
+	      }
+		}	
+	],
+	"PrescriptionDelta": {
+	    "type": "object",
+	    "properties": {
+	      "time_stamp": {
+	        "type": "string"
+	      },
+	      "pill": {
+	        "type": "array",
+	        "items": {
+	          "$ref": "#/definitions/NameElemPres"
+	        }
+	      }
+	    }
+	  },
+	"signup": [
+	    {
+	      "name": "username",
+	      "in": "body",
+	      "type": "string",
+	      "required": true
+	    },
+	    { 
+	      "name": "password",
+	      "in": "body",	
+	      "type": "string",
+	      "required": true
+	    },
+	    {
+	      "name": "email",
+	      "in": "body",
+	      "type": "string",
+	      "required": true
+	    },
+	    {
+	      "name": "first_name",
+	      "in": "body",
+	      "type": "string",
+	      "required": true
+	    },
+	    {
+	      "name": "last_name",
+	      "in": "body",
+	      "type": "string",
+	      "required": true
+	    },
+	    {
+	        "name": "type_of_user",
+	        "in": "body",
+	    	"type": "string",
+	    	"required": true
+	    },
+	    {
+	    	"name": "date_of_birth",
+	        "in": "body",
+	      	"type": "string",
+	      	"required": true
+	    },
+	    {
+			"name": "device_id",
+			"in": "body",
+			"type": "string"
+		},
+		{
+			"name": "registration_id",
+			"in": "body",
+			"type": "string"
+		}
+	],
+	"reset": [
+		{
+			"name": "id",
+			"in": "query",
+			"required": true,
+			"type": "string"
+		},
+		{
+			"name": "password",
+			"in": "body",
+			"required": true,
+			"type": "string"
+		}
+	],
+
+
+	"reset": {
+		"type": "object",
+		"properties": {
+			"password": {
+				"type": "string",
+				"required": true
+			}
+		}
+	},
+	"forgot": {
+		"type": "object",
+		"properties": {
+			"email": {
+				"type": "string",
+				"required": true
+			}
+		}
+	},
+	"afterSignup": {
+	  "type": "string",
+	  "properties": {
+	    "token": {
+	      "type": "string"
+	    }
+	  }  
+	},
+	"login": [
+		{
+			"name": "username",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "password",
+			"in": "body",
+			"type": "string",
+			"required": true
+		},
+		{
+			"name": "device_id",
+			"in": "body",
+			"type": "string"
+		},
+		{
+			"name": "registration_id",
+			"in": "body",
+			"type": "string"
+		}
+	]
+	}
+
+}

@@ -1,0 +1,216 @@
+{
+  "/doctor/create": {
+    "post": {
+      "description": "adds a new doctor",
+      "operationId": "createDoctor",
+      "tags" : ["doctor" , "authenticated", "Doctors"],
+      "parameters": [
+        {
+          "name": "doctor",
+          "in": "body",
+          "required": true,
+          "type": "array",
+          "schema": {
+            "$ref": "../config/definitions.json#/definitions/Doctor"
+          }
+        },
+           {
+            "name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+      ],
+      "responses": {
+        "default": {
+          "description": "the created doctor",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/Doctor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+
+  "/doctor/{ID}": {
+    "get": {
+      "description": "searches for a doctor given ID ",
+      "operationId": "getDoctorFromId",
+      "tags" : ["doctor" , "authenticated", "Doctors"],
+      "parameters": [
+        {
+          "name": "ID",
+          "in": "path",
+          "required": true,
+          "description": "the id of the doctor to be searched",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the searched doctor",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/Doctor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/doctor/{ID}/delete": {
+    "delete": {
+      "description": "destroys a doctor",
+      "operationId": "deleteDoctor",
+      "tags" : ["doctor", "authenticated", "Doctors"],
+      "parameters": [
+        {
+          "name": "ID",
+          "in": "path",
+          "required": true,
+          "description": "the id of the doctor to be searched",
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the created doctor",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/Doctor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/doctor/{ID}/update": {
+    "put": {
+      "description": "updates a doctor",
+      "operationId": "updateDoctor",
+      "tags" : ["doctor", "authenticated", "Doctors"],
+      "parameters": [
+      	{
+      		"name": "ID",
+      		"in": "path",
+      		"required": true,
+          "description": "the id of the doctor to be searched",
+          "type": "string"
+      	},
+        {
+          "name": "items",
+          "in": "body",
+          "description": "the details to be updated",
+          "schema": {
+            "$ref": "../config/definitions.json#/definitions/Doctor"
+          }
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the updated doctor record",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/Doctor"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

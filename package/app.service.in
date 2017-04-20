@@ -1,0 +1,11 @@
+[Unit]
+Description=%PACKAGE_NAME% node.js application
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/%PACKAGE_NAME%
+ExecStart=/usr/bin/nodejs %ENTRY%
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

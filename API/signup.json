@@ -1,0 +1,45 @@
+{
+  "/signup": {
+      "post": {
+        "operationId": "signUp",
+        "tags": ["signup"],
+        "parameters": {
+          "$ref": "../config/definitions.json#/definitions/signup" 
+        },
+        "responses": {
+          "default": {
+            "description": "access token for the user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/afterSignup"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } 
+

@@ -1,0 +1,386 @@
+{
+	"/patient/{patient_id}/time/{time_stamp}/record/search": {
+      "get": {
+        "description": "searches record",
+        "operationId": "getRecordByDate",
+        "tags" : ["record", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the found record",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/record/search": {
+      "get": {
+        "description": "searches nearest record given time stamp",
+        "operationId": "searchNearestRecordByDate",
+        "tags" : ["record", "authenticated", "Patients", "Doctors"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the found record",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/record/search/all": {
+      "get": {
+        "description": "searches all records for a patient",
+        "operationId": "getAllRecords",
+        "tags" : ["record", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "all patient records",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/time/{time_stamp}/record/update": {
+      "put": {
+        "description": "updates records for a particular date",
+        "operationId": "updateRecord",
+        "tags" : ["record", "authenticated", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "food",
+            "in": "body",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "../config/definitions.json#/definitions/FoodId"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the updated record",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/time/{time_stamp}/image/add": {
+      "post": {
+        "description": "adds images for a time stamp",
+        "operationId": "addImage",
+        "tags" : ["record", "authenticated", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "image",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the added image",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/record/{ID}/delete": {
+      "delete": {
+        "description": "deletes a record given a record id",
+        "operationId": "deleteRecord",
+        "tags" : ["record", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "all patient records",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/record/patient/{ID}/time/{time_stamp}/create": {
+      "post": {
+        "description": "creates a new record",
+        "operationId": "createRecord",
+        "tags" : ["record", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "all patient records",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Record"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

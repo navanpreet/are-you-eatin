@@ -1,0 +1,145 @@
+{
+  "/reset": {
+      "get": {
+        "operationId": "reset",
+        "tags": ["reset"],
+        "parameters": [{
+          "name": "id",
+          "in": "query",
+          "type": "string",
+          "required": "true"
+        }],
+        "responses": {
+          "default": {
+            "description": "reset a password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/afterSignup"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/user/{user_id}/password": {
+      "post": {
+        "operationId": "changePassword",
+        "tags": ["reset", "authenticated", "Patients", "Doctors"],
+        "parameters": [
+          {
+            "name": "old_password",
+            "in": "body",
+            "type": "string",
+            "required": "true"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": "true"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "change old password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/afterSignup"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/password/new": {
+      "post": {
+        "operationId": "setNewPassword",
+        "tags": ["reset"],
+        "parameters": [{
+          "name": "password",
+          "in": "body",
+          "type": "string",
+          "required": "true"
+        }],
+        "responses": {
+          "default": {
+            "description": "reset a password",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/afterSignup"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } 

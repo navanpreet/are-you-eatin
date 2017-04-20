@@ -1,0 +1,82 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.2.0",
+    "title": "Swagger Food Track",
+    "description": "A sample API that uses a petstore as an example to demonstrate features in the swagger-2.0 specification",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "Swagger API Team"
+    },
+    "license": {
+      "name": "MIT"
+    }
+  },
+  "host": "127.0.0.1:3000",
+  "basePath": "/v1",
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "allOf": [
+      { 
+        "$ref": "../API/doctor.json"
+      },
+      { 
+        "$ref": "../API/diet.json"
+      },
+      { 
+        "$ref": "../API/food.json"
+      },
+      { 
+        "$ref": "../API/login.json"
+      },
+      { 
+        "$ref": "../API/message.json"
+      },
+      { 
+        "$ref": "../API/pill.json"
+      },
+      { 
+        "$ref": "../API/prescription.json"
+      },
+      { 
+        "$ref": "../API/record.json"
+      },
+      { 
+        "$ref": "../API/signup.json"
+      },
+      { 
+        "$ref": "../API/note.json"
+      },
+      { 
+        "$ref": "../API/patient.json"
+      },
+      { 
+        "$ref": "../API/link.json"
+      },
+      { 
+        "$ref": "../API/verify.json"
+      },
+      { 
+        "$ref": "../API/reset.json"
+      },
+       { 
+        "$ref": "../API/forgot.json"
+      },
+      { 
+        "$ref": "../API/signout.json"
+      },
+      { 
+        "$ref": "../API/dietAndPrescription.json"
+      }
+    ]
+  }
+} 
+

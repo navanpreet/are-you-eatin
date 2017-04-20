@@ -1,0 +1,243 @@
+{
+	"/note/create": {
+	  "post": {
+	    "description": "creates a note",
+	    "operationId": "createNote",
+	    "tags" : ["notes", "authenticated", "Doctors"],
+	    "parameters": {
+	    	"$ref": "../config/definitions.json#/definitions/Note"    
+	    },
+	    "responses": {
+	      "default": {
+	        "description": "the created note",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/NoteReply"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/note/patient/{patient_id}/all": {
+	  "get": {
+	    "description": "get all notes for a patient",
+	    "operationId": "getAllNotesForAPatient",
+	    "tags" : ["notes", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "patient_id",
+	        "in": "path",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the requested note",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/NoteReply"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/note/{patient_id}/pill/{pill_name}": {
+	  "get": {
+	    "description": "get all notes for a patient",
+	    "operationId": "getAllNotesForAPatient",
+	    "tags" : ["notes", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "patient_id",
+	        "in": "path",
+	        "required": true,
+	        "type": "string"
+	      },
+	      {
+	        "name": "pill_name",
+	        "in": "path",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the requested note",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/NoteReply"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/note/{note_id}/delete": {
+	  "delete": {
+	    "description": "creates a note",
+	    "operationId": "createNote",
+	    "tags" : ["notes", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "note_id",
+	        "in": "path",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the deleted note",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/NoteReply"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/note/{note_id}/update": {
+	  "put": {
+	    "description": "update a note",
+	    "operationId": "updateNote",
+	    "tags" : ["notes", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "note_id",
+	        "in": "path",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the updated note",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/NoteReply"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	}
+}

@@ -1,0 +1,297 @@
+{
+	"/food/create": {
+      "post": {
+        "description": "creates a food item",
+        "operationId": "createFood",
+        "tags" : ["food", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "food",
+            "in": "body",
+            "required": true,
+            "type": "array"
+          },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "pet response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/food/all": {
+      "get": {
+        "description": "fetches the list of foods",
+        "operationId": "getFood",
+        "tags" : ["food", "authenticated", "Doctors", "Patients"],
+        "responses": {
+          "200": {
+            "description": "pet response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+    "/food/:name": {
+      "get": {
+        "description": "gets a food item by name",
+        "operationId": "getFoodByName",
+        "tags" : ["food", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "description": "name of food to fetch",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "food response"
+          },
+          "default": {
+            "description": "unexpected error"
+          }
+        }
+      }
+    },
+      "/food/create": {
+        "post": {
+          "description": "creates a new food",
+          "operationId": "createFood",
+          "tags" : ["food", "authenticated", "Doctors"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "body",
+              "required": true,
+              "type": "string"
+            },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+          ],
+          "responses": {
+            "default": {
+              "description": "new food item created",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "error_message": {
+                          "type": "string"
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "../config/definitions.json#/definitions/Food"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }, 
+      "/food/{ID}/update": {
+        "put": {
+          "description": "updates a food item",
+          "operationId": "updateFood",
+          "tags" : ["food", "authenticated", "Doctors"],
+          "parameters": [
+            {
+              "name": "ID",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+            {
+              "name": "name",
+              "in": "body",
+              "required": true,
+              "type": "string"
+            },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+          ],
+          "responses": {
+            "default": {
+              "description": "food item updated",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "error_message": {
+                          "type": "string"
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "../config/definitions.json#/definitions/Food"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },  
+      "/food/{ID}/delete": {
+        "delete": {
+          "description": "deletes a food item",
+          "operationId": "deleteFood",
+          "tags" : ["food", "authenticated", "Doctors"],
+          "parameters": [
+            {
+              "name": "ID",
+              "in": "path",
+              "required": true,
+              "type": "string"
+            },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+          ],
+          "responses": {
+            "default": {
+              "description": "deletes a food item",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "error_message": {
+                          "type": "string"
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "../config/definitions.json#/definitions/Food"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/food": {
+        "get": {
+          "description": "searches for a food substring",
+          "operationId": "regexNameSearch",
+          "tags" : ["food", "authenticated", "Doctors"],
+          "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "required": true,
+              "type": "string"
+            },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+          ],
+          "responses": {
+            "default": {
+              "description": "searches a food substring",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "error_message": {
+                          "type": "string"
+                        },
+                        "result": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "../config/definitions.json#/definitions/Food"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+}

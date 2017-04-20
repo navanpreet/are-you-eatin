@@ -1,0 +1,47 @@
+{
+	"/signout": {
+      "get": {
+        "operationId": "signOut",
+        "tags": ["signout", "authenticated", "Doctors", "Patients"],
+        "parameters": {
+          "name": "x-access-token",
+          "in": "header",
+          "required": true,
+          "type": "string" 
+        },
+        "responses": {
+          "default": {
+            "description": "logout",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

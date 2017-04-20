@@ -1,0 +1,287 @@
+{
+	"/pill/all": {
+	  "get": {
+	    "description": "fetches the list of pills",
+	    "operationId": "getPill",
+	    "tags" : ["pill", "authenticated"],
+	    "responses": {
+	      "default": {
+	        "description": "all pills",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/pill/{name}": {
+	  "get": {
+	    "description": "gets a pill by name",
+	    "operationId": "getPillByName",
+	    "tags" : ["pill", "authenticated"],
+	    "parameters": [
+	      {
+	        "name": "name",
+	        "in": "path",
+	        "description": "name of pill to fetch",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the requested pill",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/pill/search": {
+	  "get": {
+	    "description": "autocomplete pill",
+	    "operationId": "regexNameSearch",
+	    "tags" : ["pill", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "name",
+	        "in": "query",
+	        "description": "name of pill to fetch",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the requested pill",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/pill/create": {
+	  "post": {
+	    "description": "create pill",
+	    "operationId": "createPill",
+	    "tags" : ["pill", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "name",
+	        "in": "body",
+	        "description": "name of pill to create",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the created pill",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/pill/{ID}/update": {
+	  "put": {
+	    "description": "update a pill",
+	    "operationId": "updatePill",
+	    "tags" : ["pill", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "ID",
+	        "in": "path",
+	        "description": "ID of the pill to update",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the updated pill",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	},
+	"/pill/{ID}/delete": {
+	  "delete": {
+	    "description": "delete a pill",
+	    "operationId": "deletePill",
+	    "tags" : ["pill", "authenticated", "Doctors"],
+	    "parameters": [
+	      {
+	        "name": "ID",
+	        "in": "path",
+	        "description": "ID of the pill to delete",
+	        "required": true,
+	        "type": "string"
+	      }
+	    ],
+	    "responses": {
+	      "default": {
+	        "description": "the deleted pill",
+	        "schema": {
+	          "type": "object",
+	          "properties": {
+	            "success": {
+	              "type": "boolean"
+	            },
+	            "code": {
+	              "type": "integer"
+	            },
+	            "data": {
+	              "type": "array",
+	              "items": {
+	                "type": "object",
+	                "properties": {
+	                  "error_message": {
+	                    "type": "string"
+	                  },
+	                  "result": {
+	                    "type": "array",
+	                    "items": {
+	                      "$ref": "../config/definitions.json#/definitions/Pill"
+	                    }
+	                  }
+	                }
+	              }
+	            }
+	          }
+	        }
+	      }
+	    }
+	  }
+	}	
+}

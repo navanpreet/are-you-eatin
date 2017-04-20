@@ -1,0 +1,102 @@
+{
+	"/verify": {
+      "get": {
+        "description": "verify email",
+        "operationId": "verifyEmail",
+        "tags" : ["verify"],
+        "parameters": [
+        	{
+        		"name": "id",
+        		"in": "query",
+        		"type": "string",
+        		"required": true
+        	}
+        ],
+        "responses": {
+          "default": {
+            "description": "verification of email for user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "schema": {
+                            "$ref": "../config/definitions.json#/definitions/Code"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/verify/token/new": {
+      "post": {
+        "description": "verify email again",
+        "operationId": "newEmailVerificationToken",
+        "tags" : ["verify", "authenticated", "Patients", "Doctors"],
+        "parameters": [
+        	{
+        		"name": "user_id",
+        		"in": "body",
+        		"type": "string",
+        		"required": true
+        	}
+        ],
+        "responses": {
+          "default": {
+            "description": "verification of email for user",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "schema": {
+                            "$ref": "../config/definitions.json#/definitions/Code"
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

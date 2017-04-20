@@ -1,0 +1,52 @@
+{
+ "/login": {
+    "post": {
+      "description": "login for user",
+      "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+      "operationId": "login",
+      "tags": ["login"],
+      "parameters": {
+      	"$ref": "../config/definitions.json#/definitions/login"
+      },
+      "responses": {
+        "default": {
+          "description": "access token for the user",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "object",
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": "object",
+                  "properties": {
+                    "error_message":{
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "token": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

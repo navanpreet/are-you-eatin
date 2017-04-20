@@ -1,0 +1,272 @@
+{
+  "/prescription/{prescription_id}/retrieve": {
+      "get": {
+        "description": "get a prescription from id",
+        "operationId": "getPrescription",
+        "tags" : ["prescription", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "prescription_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested prescription",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Prescription"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/prescription/{patient_id}/retrieve/all": {
+      "get": {
+        "description": "get all prescriptions from patient id",
+        "operationId": "getAllPrescriptionsForAPatient",
+        "tags" : ["prescription", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested prescription",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Prescription"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/time/{time_stamp}/prescription/retrieve": {
+      "get": {
+        "description": "get a prescription from the patient id and the date",
+        "operationId": "getPrescriptionByTheDateOfCreation",
+        "tags" : ["prescription", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested prescription",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Prescription"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/prescription/add": {
+      "post": {
+        "description": "add a pill to a prescription",
+        "operationId": "addPillToPrescription",
+        "tags" : ["prescription", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "description": "the patient's diet to which the item is to be added",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "time_stamp",
+            "in": "body",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "pill",
+            "in": "body",
+            "type": "array",
+            "required": true,
+            "items": {
+              "$ref": "../config/definitions.json#/definitions/NameElemPresNote"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the added pill",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/PillRecord"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/prescription/remove": {
+      "post": {
+        "description": "remove a pill from prescription",
+        "operationId": "removePillFromPrescription",
+        "tags" : ["prescription", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "pill",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "../config/definitions.json#/definitions/PrescriptionDelta"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the modified prescription",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Pill"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

@@ -1,0 +1,260 @@
+{
+"/patient/create": {
+  "post": {
+    "description": "adds a new patient",
+    "operationId": "createPatient",
+    "tags" : ["patient", "authenticated", "Doctors"],
+    "parameters": [
+      {
+        "name": "patient",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "$ref": "../config/definitions.json#/definitions/Patient"
+        }
+      }
+    ],
+    "responses": {
+      "default": {
+        "description": "the created patient",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../config/definitions.json#/definitions/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/patient/{ID}/retrieve": {
+  "get": {
+    "description": "gets a patient by name",
+    "operationId": "getPatient",
+    "tags" : ["patient", "authenticated", "Doctors", "Patients"],
+    "parameters": [
+      {
+        "name": "ID",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      },
+      {
+      	"name": "x-access-token",
+      	"in": "header",
+      	"required": true,
+      	"type": "string"
+      }
+    ],
+    "responses": {
+      "default": {
+        "description": "The patient requested",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../config/definitions.json#/definitions/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/doctor/{ID}/patients": {
+  "get": {
+    "description": "fetches all the patients for a doctor",
+    "operationId": "getDoctor",
+    "tags" : ["patient", "Doctors"],
+    "parameters": [
+      {
+        "name": "ID",
+        "description": "the ID of the doctor whose patients you want to fetch",
+        "in": "path",
+        "required": true,
+        "type": "string"
+      }
+    ],
+    "responses": {
+      "default": {
+        "description": "all patients of a doctor",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../config/definitions.json#/definitions/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/patient/{ID}/update": {
+  "put": {
+    "description": "updates the records of a patient",
+    "operationId": "updatePatient",
+    "tags" : ["patient", "authenticated", "Patients"],
+    "parameters": [
+      {
+        "name": "patient",
+        "in": "body",
+        "required": true,
+        "schema": {
+          "$ref": "../config/definitions.json#/definitions/Patient"
+        }
+      },
+      {
+      	"name": "ID",
+      	"in": "path",
+      	"required": true,
+      	"type": "string"
+      }
+    ],
+    "responses": {
+      "default": {
+        "description": "the updated patient",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../config/definitions.json#/definitions/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+},
+"/patient/{ID}/delete": {
+  "delete": {
+    "description": "destroys the records of a patient",
+    "operationId": "deletePatient",
+    "tags" : ["patient", "authenticated", "Patients"],
+    "parameters": [
+      {
+      	"name": "ID",
+      	"in": "path",
+      	"required": true,
+      	"type": "string"
+      }
+    ],
+    "responses": {
+      "default": {
+        "description": "the updated patient",
+        "schema": {
+          "type": "object",
+          "properties": {
+            "success": {
+              "type": "boolean"
+            },
+            "code": {
+              "type": "integer"
+            },
+            "data": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "error_message": {
+                    "type": "string"
+                  },
+                  "result": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "../config/definitions.json#/definitions/Patient"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+}

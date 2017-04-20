@@ -1,0 +1,414 @@
+{
+"/messages/new": {
+    "post": {
+      "description": "create a new message",
+      "operationId": "newMessage",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": 
+        {
+          "$ref": "../config/definitions.json#/definitions/Message"
+        },
+      "responses": {
+        "default": {
+          "description": "the new message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/user/{user_id}/retrieve/all": {
+    "get": {
+      "description": "retrieves all messages for a patient",
+      "operationId": "getAllMessagesForAUser",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "all messages",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/user/{user_id}/receiver/{receiver_id}/retrieve": {
+    "get": {
+      "description": "retrieves all messages between a doctor and a patient",
+      "operationId": "getAllMessagesForAUserAndAReceiver",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "receiver_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "all messages",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/{message_id}/update_read": {
+    "put": {
+      "description": "updates the read status of a message",
+      "operationId": "updateRead",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "message_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the updated message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/{message_id}/update": {
+    "put": {
+      "description": "update a message",
+      "operationId": "updateMessage",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "message",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "../config/definitions.json#/definitions/Message"
+          }
+        },
+        {
+          "name": "message_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the new message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/user/{user_id}/time/{time_stamp}/retrieve": {
+    "get": {
+      "description": "retrieve all messages after a certain time stamp",
+      "operationId": "getAllMessagesForAUserAfterADate",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "time_stamp",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+         {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the new message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/user/{user_id}/receiver/{receiver_id}/time/{time_stamp}/retrieve": {
+    "get": {
+      "description": "retrieve all messages after a certain time stamp",
+      "operationId": "getAllMessagesForAUserAReceiverAfterADate",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "time_stamp",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+         {
+          "name": "user_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+         {
+          "name": "receiver_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the new message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "/messages/{message_id}/delete": {
+    "delete": {
+      "description": "delete a message",
+      "operationId": "deleteMessage",
+      "tags" : ["message", "authenticated", "Doctors", "Patients"],
+      "parameters": [
+        {
+          "name": "message_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "responses": {
+        "default": {
+          "description": "the new message",
+          "schema": {
+            "type": "object",
+            "properties": {
+              "success": {
+                "type": "boolean"
+              },
+              "code": {
+                "type": "integer"
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "error_message": {
+                      "type": "string"
+                    },
+                    "result": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "../config/definitions.json#/definitions/MessageReply"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

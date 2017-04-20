@@ -1,0 +1,311 @@
+{
+	"/diet/{patient_id}/retrieve": {
+      "get": {
+        "description": "get a Diet",
+        "operationId": "getDiet",
+        "tags" : ["diet", "authenticated", "Doctors", "Patients" ],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "description": "the id of the patient for which the diet is being requested",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested diet",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Diet"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/diet/{patient_id}/retrieve/all": {
+      "get": {
+        "description": "get a Diet",
+        "operationId": "getAllDietsForAPatient",
+        "tags" : ["diet", "authenticated", "Doctors", "Patients" ],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "description": "the id of the patient for which the diet is being requested",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested diet",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Diet"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/diet/add": {
+      "post": {
+        "description": "add an item to a diet",
+        "operationId": "addFoodToDiet",
+        "tags" : ["diet", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "description": "the patient's diet to which the item is to be added",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+          	"name": "time_stamp",
+			"in": "body",
+			"type": "string",
+			"required": true
+		  },
+		  {
+			"name": "food",
+			"in": "body",
+			"required": true,
+			"type": "array",
+			"schema": {
+	        	"$ref": "../config/definitions.json#/definitions/NameElem"
+	      	}
+		  },
+		   {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the added item",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Food"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/patient/{patient_id}/diet/remove": {
+      "post": {
+        "description": "remove an item from a patient's diet",
+        "operationId": "removeFoodFromDiet",
+        "tags" : ["diet", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "description": "the patient's diet to which the item is to be added",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+          	"name": "time_stamp",
+			"in": "body",
+			"type": "string",
+			"required": true
+		  },
+		  {
+			"name": "food",
+			"in": "body",
+			"type": "array",
+			"required": true,
+			"schema": {
+	        	"$ref": "../config/definitions.json#/definitions/NameElem"
+	      	}
+		  },
+		   {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the modified diet",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Diet"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/diet/{ID}/delete": {
+      "delete": {
+        "description": "remove a diet",
+        "operationId": "deleteDiet",
+        "tags" : ["diet", "authenticated", "Doctors"],
+        "parameters": [
+          {
+            "name": "ID",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+           {
+          	"name": "x-access-token",
+            "description": "the token to be passed",
+            "in": "header",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the deleted diet",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Diet"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}

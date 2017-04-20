@@ -1,0 +1,51 @@
+{
+  "/forgot": {
+      "post": {
+        "operationId": "forgot",
+        "tags": ["reset"],
+        "parameters": [
+          {
+            "name": "details",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "../config/definitions.json#/definitions/forgot"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "",
+            "schema": {
+              "type": "object",
+              "properties": {
+                  "success": {
+                    "type": "boolean"
+                  },
+                  "code": {
+                    "type": "integer"
+                  },
+                  "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/afterSignup"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  } 

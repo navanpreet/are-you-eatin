@@ -1,0 +1,56 @@
+{
+	"/patient/{patient_id}/diet/prescription/retrieve": {
+      "get": {
+        "description": "get a prescription and diet from id",
+        "operationId": "getDietAndPrescription",
+        "tags" : ["dietAndPrescription", "authenticated", "Doctors", "Patients"],
+        "parameters": [
+          {
+            "name": "patient_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+          	"name": "x-access-token",
+          	"in": "header",
+          	"required": true,
+          	"type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "the requested patient id",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "success": {
+                  "type": "boolean"
+                },
+                "code": {
+                  "type": "integer"
+                },
+                "data": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "error_message": {
+                        "type": "string"
+                      },
+                      "result": {
+                        "type": "array",
+                        "items": {
+                          "$ref": "../config/definitions.json#/definitions/Prescription"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+}
